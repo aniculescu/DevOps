@@ -1,0 +1,22 @@
+#!/bin/bash
+#bash -c "clear && docker exec -it $1 sh"
+list="$( bash <<EOF 
+docker ps
+EOF
+)"
+#echo "$list"
+#readarray -t y <<<"$list"
+#echo ${y[1]}
+
+IFS=$'\n' array=($list)
+machine_line=${array[1]}
+declare -a 'a=('"$machine_line"')'
+printf "%s\n" "${a[@]}"
+
+#parts=(${machine_line//\s{2,}/ })
+#echo ${parts[0]}
+
+# while $c IFS= read -r line;
+# do
+# echo "$line";
+# done < test.txt
